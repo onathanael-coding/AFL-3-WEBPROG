@@ -269,6 +269,8 @@ body {
 
 .carousel-track {
     display: flex;
+    touch-action: pan-y pinch-zoom;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
     position: relative;

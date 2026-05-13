@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Oliver - Full Stack Developer & Designer</title>
+    <link rel="stylesheet" href="style.css"/>
+    <meta name="description" content="Oliver's personal portfolio - Full Stack Developer & Designer studying Informatics at University Ciputra Surabaya."/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-black text-white font-sans overflow-x-hidden">
+    <!-- NAVBAR -->
+    <nav class="navbar top-0 left-0 fixed w-full z-50 bg-gray-600/5 backdrop-blur-lg">
+        <div class="nav-container mx-auto px-10 py-2 flex items-center justify-between">
+            <a href = "home.html" class="nav-logo flex items-center gap-3">
+                <img src = "img/LOGO FOR WEBSITE.png" alt="logo" class="logo h-[100px] w-full">
+                <span class="text-yellow-400 font-bold text-3xl uppercase">OLIVER</span>
+            </a>
+            <ul class="hidden md:flex items-center gap-8 text-lg font-medium">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="gallery.html" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="hobby.html" class="nav-link">Hobby</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+
+            <!-- MOBILE NAVBAR -->
+            <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+                <span class="block w-6 h-1 bg-white"></span>
+                <span class="block w-6 h-1 bg-white"></span>
+                <span class="block w-6 h-1 bg-white"></span>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="bg-black">
+            <ul class="flex flex-col px-10 py-2 gap-4 text-sm font-medium">
+                <li>
+                    <a href="home.html" class="nav-link">Home</a>
+                </li>
+                <li>
+                    <a href="gallery.html" class="nav-link">Gallery</a>
+                </li>
+                <li>
+                    <a href="hobby.html" class="nav-link">Hobby</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- MAIN -->
+    <main class="min-h-screen pt-32 pb-20 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight reveal">MY GALLERY</h1>
+            <p class="text-gray-500 mt-3 text-sm md:text-base reveal" style="transition-delay:0.1s">A collection of projects I've built and designed.</p>
+        </div>
+
+        <!-- CAROUSEL -->
+        <div class="mt-16 reveal" style="transition-delay: 0.2s;">
+            <div class="carousel-track" id="carousel">
+
+                <!-- Card 1 -->
+                <div class="carousel-card pos-right">
+                    <div style="background: linear-gradient(135deg,#1a1a2e,#16213e); height:220px; display:flex; align-items:center; justify-content:center;">
+                        <img src="img/duck.png" alt="duck-project" class="w-32">
+                    </div>
+                    <div class="card-info">
+                        <div class="flex justify-between items-center mb-1">
+                        <h3>Game Project</h3>
+                        <span class="badge">Game App</span>
+                        </div>
+                        <p>Game that built with XCode</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 TENGAH-->
+                <div class="carousel-card pos-center">
+                    <div style="background: linear-gradient(135deg,#1a1a2e,#16213e); height:220px; display:flex; align-items:center; justify-content:center;">
+                        <img src="img/duck.png" alt="duck-project" class="w-32">
+                    </div>
+                    <div class="card-info">
+                        <div class="flex justify-between items-center mb-1">
+                        <h3>Game Project</h3>
+                        <span class="badge">Game App</span>
+                        </div>
+                        <p>Game that built with XCode</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="carousel-card pos-left">
+                    <div style="background: linear-gradient(135deg,#1a1a2e,#16213e); height:220px; display:flex; align-items:center; justify-content:center;">
+                        <img src="img/code.png" alt="code-project" class="w-32">
+                    </div>
+                    <div class="card-info">
+                        <div class="flex justify-between items-center mb-1">
+                        <h3>Game Project</h3>
+                        <span class="badge">Game App</span>
+                        </div>
+                        <p>Game that built with XCode</p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- END OF CAROUSEL -->
+
+        <!-- KONTROL -->
+        <div class="flex items-center justify-center gap-6 mt-10">
+            <button id="btn-prev" class="carousel-btn" aria-label="Prev">&#8592</button>
+
+            <!-- TITIK -->
+            <div class="flex items-center justify-center gap-3" id="dots"></div>
+            <button id="btn-next" class="carousel-btn" aria-label="Next">&#8594</button>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a0a0a] border-t border-gray-800 py-12 px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- Brand -->
+            <div class="flex flex-col gap-3">
+                <div class="flex items-center gap-3">
+                    <img src="img/LOGO FOR WEBSITE.png" alt="Oliver Logo" class="h-20 w-auto" />
+                    <span class="text-yellow-400 font-bold text-3xl uppercase">OLIVER</span>
+                </div>
+                <p class="text-gray-500 text-xs">Full Stack Developer &amp; Designer</p>
+            </div>
+
+            <!-- Social -->
+            <div>
+                <h4 class="text-gray-400 text-xs uppercase tracking-widest font-semibold mb-3">Social</h4>
+                <ul class="flex flex-col gap-1.5 text-sm text-gray-400">
+                    <li><a href="https://www.instagram.com/oltharv/" class="hover:text-[#F5C518] transition-colors">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/in/oliver-nathanael-arvian-97725837a/" class="hover:text-[#F5C518] transition-colors">LinkedIn</a></li>
+                    <li><a href="https://github.com/onathanael-coding" class="hover:text-[#F5C518] transition-colors">GitHub</a></li>
+                    <li><a href="https://wa.me/6281234546420" class="hover:text-[#F5C518] transition-colors">Whatsapp</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-gray-400 text-xs uppercase tracking-widest font-semibold mb-3">Contact</h4>
+                <ul class="flex flex-col gap-1.5 text-sm text-gray-400">
+                    <li>onathanael@student.ciputra.ac.id</li>
+                    <li>+6281234546420</li>
+                    <li class="mt-2">University Ciputra Surabaya<br />Surabaya, Indonesia</li>
+                    </ul>
+            </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">
+            © 2026 Oliver — Designed &amp; Built with Passion
+            </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

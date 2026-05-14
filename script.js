@@ -89,93 +89,103 @@ if (carousel) {
     });
 }
 
-    // HAMBURGER MENU //
-    function initHamburger(btnId, menuId, line1Id, line2Id, line3Id) {
-        const btn = $(btnId);
-        const menu = $(menuId);
-        const l1 = $(line1Id);
-        const l2 = $(line2Id);
-        const l3 = $(line3Id);
-        if (!btn || !menu) return;
+// HAMBURGER MENU //
+function initHamburger(btnId, menuId, line1Id, line2Id, line3Id) {
+    const btn = $(btnId);
+    const menu = $(menuId);
+    const l1 = $(line1Id);
+    const l2 = $(line2Id);
+    const l3 = $(line3Id);
+    if (!btn || !menu) return;
 
-        let open = false;
+    let open = false;
 
-        btn.addEventListener('click', () => {
-            open = !open;
-            menu.classList.toggle('open', open);
-            if (l1) l1.style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
-            if (l2) l2.style.opacity = open ? '0' : '';
-            if (l3) l3.style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+    btn.addEventListener('click', () => {
+        open = !open;
+        menu.classList.toggle('open', open);
+        if (l1) l1.style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+        if (l2) l2.style.opacity = open ? '0' : '';
+        if (l3) l3.style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+    });
+
+    menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            open = false;
+            menu.classList.remove('open');
+            if (l1) l1.style.transform = '';
+            if (l2) l2.style.opacity = '';
+            if (l3) l3.style.transform = '';
         });
+    });
+}
 
-        menu.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                open = false;
-                menu.classList.remove('open');
-                if (l1) l1.style.transform = '';
-                if (l2) l2.style.opacity = '';
-                if (l3) l3.style.transform = '';
-            });
-        });
+initHamburger('hamburger', 'mobile-menu', 'hb1', 'hb2', 'hb3');
+initHamburger('hbtn', 'mob-menu', 'h1', 'h2', 'h3');
+
+// CONTACT FORM
+
+const toastEl = $('toast');
+function showToast(msg, isError = false) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.style.borderLeftColor = isError ? '#ef4444' : '#F5C518';
+    toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 3500);
+}
+
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
+function setFieldError(el) {
+    if (!el) return;
+    el.classList.add('err', 'error');
+    el.style.borderColor = '#ef4444';
+    el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.18)';
+    el.addEventListener('input', () => {
+        el.classList.remove('err', 'error');
+        el.style.borderColor = '';
+        el.style.boxShadow = '';
+    }, { once: true });
+}
+
+
+const form = $('contact-form');
+if (form) {
+
+    const inpName = $('input-name') || $('inp-name');
+    const inpEmail = $('input-email') || $('inp-email');
+    const inpMsg = $('input-message') || $('inp-msg');
+    const btnSub = $('btn-submit') || $('btn-sub');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const name = inpName ? inpName.value.trim() : '';
+        const email = inpEmail ? inpEmail.value.trim() : '';
+        const msg = inpMsg ? inpMsg.value.trim() : '';
+
+        if (!name) { setFieldError(inpName); showToast('❌ Please enter your name.', true); return; }
+        if (!email) { setFieldError(inpEmail); showToast('❌ Please enter your email.', true); return; }
+        if (!validateEmail(email)) { setFieldError(inpEmail); showToast('❌ Invalid email address.', true); return; }
+        if (!msg) { setFieldError(inpMsg); showToast('❌ Please write a message.', true); return; }
+
+        if (btnSub) { btnSub.disabled = true; btnSub.textContent = 'Sending...'; btnSub.style.opacity = '0.7'; }
+
+        setTimeout(() => {
+            form.reset();
+            if (btnSub) { btnSub.disabled = false; btnSub.textContent = 'Send Message'; btnSub.style.opacity = ''; }
+            showToast("✅ Message sent! I'll get back to you soon.");
+        }, 1200);
+    });
+}
+
+const navLinks = $qa('nav a');
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href').split('/').pop();
+    if (linkPage === currentPage) {
+        link.classList.add('active-nav');
     }
-
-    initHamburger('hamburger', 'mobile-menu', 'hb1', 'hb2', 'hb3');
-    initHamburger('hbtn', 'mob-menu', 'h1', 'h2', 'h3');
-
-    // CONTACT FORM
-
-    const toastEl = $('toast');
-    function showToast(msg, isError = false) {
-        if (!toastEl) return;
-        toastEl.textContent = msg;
-        toastEl.style.borderLeftColor = isError ? '#ef4444' : '#F5C518';
-        toastEl.classList.add('show');
-        setTimeout(() => toastEl.classList.remove('show'), 3500);
-    }
-
-    function validateEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-    }
-
-    function setFieldError(el) {
-        if (!el) return;
-        el.classList.add('err', 'error');
-        el.style.borderColor = '#ef4444';
-        el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.18)';
-        el.addEventListener('input', () => {
-            el.classList.remove('err', 'error');
-            el.style.borderColor = '';
-            el.style.boxShadow = '';
-        }, { once: true });
-    }
-
-
-    const form = $('contact-form');
-    if (form) {
-
-        const inpName = $('input-name') || $('inp-name');
-        const inpEmail = $('input-email') || $('inp-email');
-        const inpMsg = $('input-message') || $('inp-msg');
-        const btnSub = $('btn-submit') || $('btn-sub');
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            const name = inpName ? inpName.value.trim() : '';
-            const email = inpEmail ? inpEmail.value.trim() : '';
-            const msg = inpMsg ? inpMsg.value.trim() : '';
-
-            if (!name) { setFieldError(inpName); showToast('❌ Please enter your name.', true); return; }
-            if (!email) { setFieldError(inpEmail); showToast('❌ Please enter your email.', true); return; }
-            if (!validateEmail(email)) { setFieldError(inpEmail); showToast('❌ Invalid email address.', true); return; }
-            if (!msg) { setFieldError(inpMsg); showToast('❌ Please write a message.', true); return; }
-
-            if (btnSub) { btnSub.disabled = true; btnSub.textContent = 'Sending...'; btnSub.style.opacity = '0.7'; }
-
-            setTimeout(() => {
-                form.reset();
-                if (btnSub) { btnSub.disabled = false; btnSub.textContent = 'Send Message'; btnSub.style.opacity = ''; }
-                showToast("✅ Message sent! I'll get back to you soon.");
-            }, 1200);
-        });
-    }
+});

@@ -191,6 +191,11 @@ body {
     width: 100%;
 }
 
+.active-nav {
+    color: #F5C518 !important;
+    font-weight: 600;
+}
+
 /* MOBILE MENU */
 #mobile-menu {
     max-height: 0;
